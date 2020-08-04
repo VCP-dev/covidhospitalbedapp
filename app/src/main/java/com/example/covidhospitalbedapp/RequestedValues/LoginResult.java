@@ -1,4 +1,4 @@
-package com.example.covidhospitalbedapp;
+package com.example.covidhospitalbedapp.RequestedValues;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -8,27 +8,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
+import com.example.covidhospitalbedapp.RequestedValues.LoginResult;
 
-import okhttp3.OkHttpClient;
+import java.util.HashMap;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     Button LoginButton;
     Button SignUpButton;
-
-    Retrofit retrofit;
-    RetrofitInterface retrofitInterface;
-    private String BASE_URL="http://192.168.43.238:3300";
 
 
 
@@ -36,21 +30,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(1,TimeUnit.MINUTES)
-                .writeTimeout(15,TimeUnit.SECONDS)
-                .readTimeout(30,TimeUnit.SECONDS)
-                .build();
-
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        retrofitInterface = retrofit.create(RetrofitInterface.class);
 
         LoginButton = findViewById(R.id.loginbutton);
         SignUpButton = findViewById(R.id.signupbutton);
@@ -93,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
                 map.put("password",passwordedit.getText().toString());
 
                 //  call for post request to server
-                Call<LoginResult> call = retrofitInterface.excuteLogin(map);
+                //Call<LoginResult> call = retrofitInterface.excuteLogin(map);
+                Call<LoginResult> call = APIcalls.getRetrofitInterface().excuteLogin(map);
 
                 call.enqueue(new Callback<LoginResult>() {
                     @Override
@@ -153,7 +133,9 @@ public class MainActivity extends AppCompatActivity {
                 map.put("password",passwordedit.getText().toString());
 
                 //  call for post request to server
-                Call<Void> call = retrofitInterface.excuteSignup(map);
+                //Call<Void> call = retrofitInterface.excuteSignup(map);
+
+                Call<Void> call = APIcalls.getRetrofitInterface().excuteSignup(map);
 
                 call.enqueue(new Callback<Void>() {
                     @Override
