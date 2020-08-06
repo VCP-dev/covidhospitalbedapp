@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.covidhospitalbedapp.APIcalls;
 import com.example.covidhospitalbedapp.R;
+import com.example.covidhospitalbedapp.RequestedValues.AllRegisteredHospitals;
 import com.example.covidhospitalbedapp.RequestedValues.LoginResult;
 
 import java.util.HashMap;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         aboutbutton = findViewById(R.id.about_button);
+
+        getallhospitals();
 
         aboutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +71,52 @@ public class MainActivity extends AppCompatActivity {
 
  */
     }
+
+
+    // for all hospitals
+    private void getallhospitals(){
+
+        Toast.makeText(MainActivity.this,"Retrieving hospitals...",Toast.LENGTH_SHORT).show();
+
+        Call<AllRegisteredHospitals> allRegisteredHospitals = APIcalls.getRetrofitInterface().getallhospitals();
+
+        allRegisteredHospitals.enqueue(new Callback<AllRegisteredHospitals>() {
+            @Override
+            public void onResponse(Call<AllRegisteredHospitals> call, Response<AllRegisteredHospitals> response) {
+
+                if(response.code()==200){
+
+                    AllRegisteredHospitals registeredHospitals = response.body();
+
+                    Toast.makeText(MainActivity.this,""+registeredHospitals.getHospitals().get(0).getName(),Toast.LENGTH_LONG).show();
+
+                }
+                else if(response.code()==400){
+
+                    Toast.makeText(MainActivity.this,"No hospitals have been registered...",Toast.LENGTH_LONG).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<AllRegisteredHospitals> call, Throwable t) {
+
+                Toast.makeText(MainActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
+                Log.e("Error",t.getMessage());
+
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+    /// base calls
 
 
     private void handlelogindialog() {

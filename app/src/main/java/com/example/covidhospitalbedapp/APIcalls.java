@@ -1,5 +1,7 @@
 package com.example.covidhospitalbedapp;
 
+import com.example.covidhospitalbedapp.RequestedValues.AllRegisteredHospitals;
+import com.example.covidhospitalbedapp.RequestedValues.HospitalResult;
 import com.example.covidhospitalbedapp.RequestedValues.LoginResult;
 
 import java.util.HashMap;
@@ -10,6 +12,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public class APIcalls {
@@ -42,6 +45,20 @@ public class APIcalls {
 
     public interface RetrofitInterface {
 
+        // to add a hospital
+        @POST("/newhospital")
+        Call<Void> executenewhospital(@Body HashMap<String,String> Map);
+
+        // to get all registered hospitals
+        @GET("/allregisteredhospitals")
+        Call<AllRegisteredHospitals> getallhospitals();
+
+
+
+
+
+
+        //  example calls...
         @POST("/login")
         Call<LoginResult> excuteLogin(@Body HashMap<String,String> Map);
 

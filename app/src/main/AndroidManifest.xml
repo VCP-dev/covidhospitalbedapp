@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.AboutActivity"></activity>
+        <activity android:name=".Activities.AdminActivity"></activity>
+        <activity android:name=".Activities.AboutActivity" />
         <activity
             android:name=".Activities.SplashActivity"
             android:noHistory="true">
@@ -22,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.MainActivity"></activity>
+        <activity android:name=".Activities.MainActivity" />
     </application>
 
 </manifest>

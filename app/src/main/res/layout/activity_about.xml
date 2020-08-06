@@ -9,6 +9,7 @@
     tools:context=".Activities.AboutActivity">
 
     <RelativeLayout
+        android:id="@+id/adminbutton"
         android:background="@color/colorPrimary"
         android:layout_weight="0.25"
         android:layout_width="match_parent"
@@ -119,9 +120,26 @@
 
                 </androidx.cardview.widget.CardView>
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="#fff"
+                        android:layout_marginLeft="10dp"
+                        android:text="Developed in public interest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
 
 
             </LinearLayout>
+
+
 
         </ScrollView>
 
