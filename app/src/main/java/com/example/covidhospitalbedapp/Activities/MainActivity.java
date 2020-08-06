@@ -1,15 +1,21 @@
-package com.example.covidhospitalbedapp;
+package com.example.covidhospitalbedapp.Activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.example.covidhospitalbedapp.APIcalls;
+import com.example.covidhospitalbedapp.R;
 import com.example.covidhospitalbedapp.RequestedValues.LoginResult;
 
 import java.util.HashMap;
@@ -17,12 +23,13 @@ import java.util.HashMap;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button LoginButton;
-    Button SignUpButton;
+    //Button LoginButton;
+    //Button SignUpButton;
+
+    ImageView aboutbutton;
 
 
 
@@ -31,6 +38,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        aboutbutton = findViewById(R.id.about_button);
+
+        aboutbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent about = new Intent(MainActivity.this,AboutActivity.class);
+                startActivity(about);
+            }
+        });
+
+/*
         LoginButton = findViewById(R.id.loginbutton);
         SignUpButton = findViewById(R.id.signupbutton);
 
@@ -47,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
                 handlesignupdialog();
             }
         });
+
+ */
     }
 
 

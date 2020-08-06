@@ -4,10 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F4F4F4"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
 
-    <Button
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/statustoolbar"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:textColor="#fff"
+                android:text="Name of app"
+                android:textSize="21dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="12dp"
+                android:id="@+id/about_button"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/new_about_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <!--<Button
         android:layout_margin="20dp"
         android:layout_gravity="center_horizontal"
         android:id="@+id/loginbutton"
@@ -21,7 +58,7 @@
         android:id="@+id/signupbutton"
         android:text="Sign up"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"/>-->
 
 
 
