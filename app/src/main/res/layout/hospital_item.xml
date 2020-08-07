@@ -4,25 +4,28 @@
 
     <androidx.cardview.widget.CardView
         android:background="#fff"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:paddingLeft="20dp"
+            android:paddingLeft="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
+                android:textColor="#000"
+                android:layout_marginTop="7dp"
                 android:id="@+id/hospitalname"
-                android:textSize="20dp"
+                android:textSize="25dp"
                 android:text="Name of hospital"
-                android:layout_width="wrap_content"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:layout_marginRight="20dp"
+                android:textColor="#000"
+                android:layout_marginRight="54dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:id="@+id/numberofbeds"
@@ -31,12 +34,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
+            <ImageView
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/bed"
+                android:layout_width="58dp"
+                android:layout_height="58dp"/>
+
+            <ImageView
+                android:layout_marginTop="76dp"
+                android:src="@drawable/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
             <TextView
+                android:layout_marginLeft="27dp"
+                android:textColor="#000"
                 android:layout_marginBottom="15dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="78dp"
                 android:id="@+id/hospitallocation"
                 android:text="lorem ipsum stuff stuff stuff stuff"
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"/>
 
         </RelativeLayout>

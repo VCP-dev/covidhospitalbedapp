@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                getallhospitals(MainActivity.this);
+
             }
         });
 
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     // for all hospitals
     private void getallhospitals(final Context context){
 
-        Toast.makeText(MainActivity.this,"Retrieving hospitals...",Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this,"Refreshing...",Toast.LENGTH_SHORT).show();
 
         Call<AllRegisteredHospitals> allRegisteredHospitals = APIcalls.getRetrofitInterface().getallhospitals();
 

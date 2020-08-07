@@ -1,6 +1,7 @@
 package com.example.covidhospitalbedapp.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,9 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHo
 
         holder.nameofhospital.setText(hospital.getName());
         holder.numberofbeds.setText(hospital.getNumberOfBeds());
+        if(Integer.valueOf(hospital.getNumberOfBeds())<=10){
+            holder.numberofbeds.setTextColor(Color.parseColor("#FF0000"));
+        }
         holder.location.setText(hospital.getLocation());
 
     }

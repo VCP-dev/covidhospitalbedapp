@@ -11,7 +11,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:src="@drawable/refresh"
         android:id="@+id/refreshbutton"
-        android:layout_margin="30dp"
+        android:layout_margin="25dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
