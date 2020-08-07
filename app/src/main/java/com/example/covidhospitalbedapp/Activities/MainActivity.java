@@ -2,8 +2,13 @@ package com.example.covidhospitalbedapp.Activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,15 +20,23 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.example.covidhospitalbedapp.APIcalls;
+import com.example.covidhospitalbedapp.Adapters.HospitalAdapter;
+import com.example.covidhospitalbedapp.Models.HospitalItem;
 import com.example.covidhospitalbedapp.R;
 import com.example.covidhospitalbedapp.RequestedValues.AllRegisteredHospitals;
+import com.example.covidhospitalbedapp.RequestedValues.HospitalResult;
 import com.example.covidhospitalbedapp.RequestedValues.LoginResult;
+import com.example.covidhospitalbedapp.ReusableFunctions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
     //Button SignUpButton;
 
     ImageView aboutbutton;
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    FloatingActionButton refreshbutton;
+
+
+    //private List<HospitalItem> hospitals;
+    private List<HospitalResult> hospitals;
 
 
 
@@ -40,8 +60,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         aboutbutton = findViewById(R.id.about_button);
+        refreshbutton = findViewById(R.id.refreshbutton);
 
-        getallhospitals();
+        getallhospitals(this);
 
         aboutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,30 +72,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-/*
-        LoginButton = findViewById(R.id.loginbutton);
-        SignUpButton = findViewById(R.id.signupbutton);
-
-        LoginButton.setOnClickListener(new View.OnClickListener() {
+        refreshbutton.setSupportBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#0BA8DA")));
+        refreshbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                handlelogindialog();
+
             }
         });
 
-        SignUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handlesignupdialog();
-            }
-        });
-
- */
     }
 
 
     // for all hospitals
-    private void getallhospitals(){
+    private void getallhospitals(final Context context){
 
         Toast.makeText(MainActivity.this,"Retrieving hospitals...",Toast.LENGTH_SHORT).show();
 
@@ -88,7 +98,16 @@ public class MainActivity extends AppCompatActivity {
 
                     AllRegisteredHospitals registeredHospitals = response.body();
 
-                    Toast.makeText(MainActivity.this,""+registeredHospitals.getHospitals().get(0).getName(),Toast.LENGTH_LONG).show();
+                    recyclerView = findViewById(R.id.hospitalrecycler);
+                    recyclerView.setHasFixedSize(true);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+                    List<HospitalResult> sortedhospitallist = ReusableFunctions.sorthospitals(registeredHospitals.getHospitals());
+
+                    adapter = new HospitalAdapter(sortedhospitallist,context);
+                    recyclerView.setAdapter(adapter);
+
+                    //Toast.makeText(MainActivity.this,""+registeredHospitals.getHospitals().get(0).getName(),Toast.LENGTH_LONG).show();
 
                 }
                 else if(response.code()==400){
