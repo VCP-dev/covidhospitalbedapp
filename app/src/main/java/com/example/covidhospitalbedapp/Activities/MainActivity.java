@@ -39,7 +39,7 @@ import retrofit2.Response;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HospitalAdapter.OnHospitalListener{
 
     //Button LoginButton;
     //Button SignUpButton;
@@ -107,9 +107,12 @@ public class MainActivity extends AppCompatActivity {
 
                     List<HospitalResult> sortedhospitallist = ReusableFunctions.sorthospitals(registeredHospitals.getHospitals());
 
-                    adapter = new HospitalAdapter(sortedhospitallist,context);
-                    recyclerView.setAdapter(adapter);
+                    setryclerview(sortedhospitallist,context);
+                    /*hospitals=sortedhospitallist;
 
+                    adapter = new HospitalAdapter(sortedhospitallist,context,this);
+                    recyclerView.setAdapter(adapter);
+*/
                     //Toast.makeText(MainActivity.this,""+registeredHospitals.getHospitals().get(0).getName(),Toast.LENGTH_LONG).show();
 
                 }
@@ -129,6 +132,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+
+
+    void setryclerview(List<HospitalResult> sortedhospitallist,Context context){
+
+        hospitals=sortedhospitallist;
+        adapter = new HospitalAdapter(sortedhospitallist,context,this);
+        recyclerView.setAdapter(adapter);
 
     }
 
@@ -251,5 +264,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void OnHospitalClick(int position) {
+
+        Bundle extras = new Bundle();
+        extras.putString("name",hospitals.get(position).getName());
+        extras.putString("location",hospitals.get(position).getLocation());
+        extras.putString("number_of_beds",hospitals.get(position).getNumberOfBeds());
+        extras.putString("description",hospitals.get(position).getDescription());
+        Intent intent = new Intent(this,Description.class);
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 }

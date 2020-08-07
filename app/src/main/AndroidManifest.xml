@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.AdminActivity"></activity>
+        <activity android:name=".Activities.Description"></activity>
+        <activity android:name=".Activities.AdminActivity" />
         <activity android:name=".Activities.AboutActivity" />
         <activity
             android:name=".Activities.SplashActivity"

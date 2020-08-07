@@ -19,13 +19,15 @@ import java.util.List;
 public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHolder> {
 
 
-    List<HospitalResult> hospitalist;
+    private List<HospitalResult> hospitalist;
     private Context context;
+    private OnHospitalListener mOnhospitalListener;
 
 
-    public HospitalAdapter(List<HospitalResult> hospitalist,Context context){
+    public HospitalAdapter(List<HospitalResult> hospitalist,Context context,OnHospitalListener onHospitalListener){
         this.hospitalist=hospitalist;
         this.context=context;
+        this.mOnhospitalListener=onHospitalListener;
     }
 
 
@@ -35,7 +37,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHo
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.hospital_item,parent,false);
 
-        return new ViewHolder(view);
+        return new ViewHolder(view,mOnhospitalListener);
 
     }
 
@@ -60,21 +62,36 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHo
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView nameofhospital;
         TextView location;
         TextView numberofbeds;
+        OnHospitalListener onHospitalListener;
 
 
-        public ViewHolder(@NonNull View itemView)
+        public ViewHolder(@NonNull View itemView,OnHospitalListener onHospitalListener)
         {
             super(itemView);
 
             nameofhospital = itemView.findViewById(R.id.hospitalname);
             location = itemView.findViewById(R.id.hospitallocation);
             numberofbeds = itemView.findViewById(R.id.numberofbeds);
+            this.onHospitalListener = onHospitalListener;
+
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onHospitalListener.OnHospitalClick(getAdapterPosition());
+        }
+    }
+
+
+
+    public interface OnHospitalListener{
+        void OnHospitalClick(int position);
     }
 
 
