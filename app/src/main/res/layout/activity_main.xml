@@ -32,7 +32,7 @@
                 android:textStyle="bold"
                 android:paddingTop="5dp"
                 android:textColor="#fff"
-                android:text="Name of app"
+                android:text="Covid care beds"
                 android:textSize="21dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -58,7 +58,7 @@
         android:id="@+id/hospitalrecycler"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 
     <!--<Button
         android:layout_margin="20dp"

@@ -32,4 +32,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <Button
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/update_hospital"
+        android:id="@+id/delete_hospital"
+        android:textColor="#fff"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="18dp"
+        android:text="Delete existing hospital"
+        android:layout_centerVertical="true"
+        android:background="@drawable/button_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </RelativeLayout>

@@ -12,8 +12,10 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public class APIcalls {
 
@@ -52,6 +54,14 @@ public class APIcalls {
         // to get all registered hospitals
         @GET("/allregisteredhospitals")
         Call<AllRegisteredHospitals> getallhospitals();
+
+        // to update the number of beds available in a hospital
+        @PUT("/updatehospital")
+        Call<Void> updatehospital(@Body HashMap<String,String> Map);
+
+        // to delete a registered hospital
+        @GET("/delete")
+        Call<Void> deletehospital(@Body HashMap<String,String> Map);
 
 
 
