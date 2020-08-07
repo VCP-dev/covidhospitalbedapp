@@ -60,7 +60,7 @@ public class APIcalls {
         Call<Void> updatehospital(@Body HashMap<String,String> Map);
 
         // to delete a registered hospital
-        @GET("/delete")
+        @POST("/delete")
         Call<Void> deletehospital(@Body HashMap<String,String> Map);
 
 

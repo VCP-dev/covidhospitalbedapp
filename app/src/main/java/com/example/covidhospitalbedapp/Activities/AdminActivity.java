@@ -184,9 +184,9 @@ public class AdminActivity extends AppCompatActivity {
                 map.put("name",name.getText().toString().trim());
 
                 //Toast.makeText(AdminActivity.this, map.toString(), Toast.LENGTH_SHORT).show();
-                Call<Void> call = APIcalls.getRetrofitInterface().deletehospital(map);
+                Call<Void> delcall = APIcalls.getRetrofitInterface().deletehospital(map);
 
-                call.enqueue(new Callback<Void>() {
+                delcall.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if(response.code()==200){
