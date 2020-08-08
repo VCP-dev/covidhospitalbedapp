@@ -63,17 +63,6 @@ public class APIcalls {
         @POST("/delete")
         Call<Void> deletehospital(@Body HashMap<String,String> Map);
 
-
-
-
-
-
-        //  example calls...
-        @POST("/login")
-        Call<LoginResult> excuteLogin(@Body HashMap<String,String> Map);
-
-        @POST("/signup")
-        Call<Void> excuteSignup(@Body HashMap<String,String> Map);
     }
 
 
